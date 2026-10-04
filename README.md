@@ -35,19 +35,19 @@ Details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · method and evaluation: 
 
 ## Evaluation
 
-From [docs/METHOD.md](docs/METHOD.md) (`make check`): brief-named rules 26/27 (the miss, Santa Ana, has no text in the corpus and is recorded as a finding); change tests T1–T5 pass; a new-ordinance rehearsal on fictional text 45/45 addresses; address questions 24/24 on the tuning set and 16/16 on a held-out set never used for tuning; scored quotes 100% verbatim. Limits are listed in the same file.
+From [docs/METHOD.md](docs/METHOD.md) (`make check`): brief-named rules 26/27 (the miss, Santa Ana, has no text in the corpus and is recorded as a finding); change tests T1–T5 pass; a new-ordinance rehearsal on fictional text 45/45 addresses; address questions 23/24 on the tuning set and 16/16 on a held-out set never used for tuning; scored quotes 100% verbatim. Limits are listed in the same file.
 
 ## Run it
 
 ```bash
 make build      # engine -> outputs/*.json from the committed rules and resolved addresses
-make eval       # assertions, change tests, quote check, disclaimer crawl
+make eval       # requires the original starter pack for independent quote verification
 make test       # engine unit tests
 
 cd web && npm ci && npm run dev   # the website and MCP route on localhost:3000
 ```
 
-The RealPage starter pack is not included (its licence is set by the organizers). The website (`web/`) builds and runs without it. The engine targets (`make build`, `make test`, `make eval`) read the corpus manifest and need the pack placed at `data/realpage-starter/`, plus Python 3 with PyYAML.
+The RealPage starter pack is not included (its licence is set by the organizers). `make build` and the website run without it, using the committed intermediates in `out/`. The build also uses `out/build_inputs.json`: document IDs and change scenarios, with no corpus text or expected answers. It recomputes results rather than copying submission outputs. To refresh this metadata when the pack changes, run `python3 -m engine.build_inputs` with the pack installed. `make eval`, `make check`, `make extract` and `make resolve` require the original pack at `data/realpage-starter/`.
 
 ## Repository layout
 
