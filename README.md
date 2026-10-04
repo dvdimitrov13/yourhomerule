@@ -41,13 +41,13 @@ From [docs/METHOD.md](docs/METHOD.md) (`make check`): brief-named rules 26/27 (t
 
 ```bash
 make build      # engine -> outputs/*.json from the committed rules and resolved addresses
-make eval       # requires the original starter pack for independent quote verification
+make eval       # uses the included starter pack for independent quote verification
 make test       # engine unit tests
 
 cd web && npm ci && npm run dev   # the website and MCP route on localhost:3000
 ```
 
-The RealPage starter pack is not included (its licence is set by the organizers). `make build` and the website run without it, using the committed intermediates in `out/`. The build also uses `out/build_inputs.json`: document IDs and change scenarios, with no corpus text or expected answers. It recomputes results rather than copying submission outputs. To refresh this metadata when the pack changes, run `python3 -m engine.build_inputs` with the pack installed. `make eval`, `make check`, `make extract` and `make resolve` require the original pack at `data/realpage-starter/`.
+The RealPage starter pack is included at `data/realpage-starter/`; its own notices and terms apply separately from the repository code license. `make build` recomputes results from the committed intermediates and the pack metadata. It can also run without the pack using `out/build_inputs.json` (document IDs and change scenarios, no expected answers). Refresh that fallback with `python3 -m engine.build_inputs` when the pack changes. Full extraction and evaluation use the included pack; extraction also needs model credentials.
 
 ## Repository layout
 

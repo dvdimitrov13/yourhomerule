@@ -516,4 +516,4 @@ The refreshed snapshot at `1617e5b` contains plans for 500 sample addresses, wit
 
 ### Public build reproducibility
 
-Public checkouts rebuild from committed intermediates plus `out/build_inputs.json` (corpus document IDs and T1–T5 scenario inputs, without source text or expected answers). The engine prefers the original starter files when present. `python3 -m engine.build_inputs` refreshes this metadata from the original pack. `make eval` and `make check` still require the pack; a successful public build does not independently verify source quotes.
+Public checkouts rebuild from committed intermediates plus `out/build_inputs.json` (corpus document IDs and T1–T5 scenario inputs, without source text or expected answers). The engine prefers the original starter files when present. `python3 -m engine.build_inputs` refreshes this metadata from the original pack. The starter pack is included at `data/realpage-starter/` at Dimitar's request. `make eval` and `make check` use that pack; a successful build alone does not independently verify source quotes.
